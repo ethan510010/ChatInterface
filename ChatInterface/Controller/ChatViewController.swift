@@ -10,7 +10,7 @@ import UIKit
 
 class ChatViewController: UIViewController {
     
-    let messages = [Message(speaker: "s1", content: "別堆砌懷念讓劇情變得狗血,深愛了多年又何必毀了經典,都已成年不拖不欠,浪費時間是我情願,像謝幕的演員,眼看著燈光熄滅,別堆砌懷念讓劇情變得狗血,深愛了多年又何必毀了經典,都已成年不拖不欠,浪費時間是我情願,像謝幕的演員,眼看著燈光熄滅,浪費時間是我情願,像謝幕的演員,眼看著燈光熄滅", chatType: .mine), Message(speaker: "s2", content: "來不及再轟轟烈烈,就保留告別的尊嚴,我愛你不後悔也尊重故事結尾", chatType: .someone),Message(speaker: "s2", content: "分手應該體面誰都不要說抱歉,何來虧欠我敢給就敢心碎,鏡頭前面是從前的我們,在喝彩流著淚聲嘶力竭", chatType: .someone),Message(speaker: "s1", content: "離開也很體面才沒辜負這些年,愛得熱烈認真付出的畫面,別讓執念毀掉了昨天,我愛過你利落乾脆", chatType: .someone)]
+    let messages = [Message(speaker: "s1", content: "對這個世界如果你有太多的抱怨跌倒了就不敢繼續往前走為什麼人要這麼的脆弱 墮落請你打開電視看看多少人為生命在努力勇敢的走下去我們是不是該知足珍惜一切就算沒有擁有//////////////////", chatType: .mine, messageImage: nil), Message(speaker: "s2", content: "還記得你說家是唯一的城堡 隨著稻香河流繼續奔跑微微笑 小時候的夢我知道不要哭讓螢火蟲帶著你逃跑 鄉間的歌謠永遠的依靠回家吧 回到最初的美好", chatType: .someone, messageImage: nil),Message(speaker: "s2", content: "不要這麼容易就想放棄 就像我說的追不到的夢想 換個夢不就得了為自己的人生鮮艷上色 先把愛塗上喜歡的顏色///////////", chatType: .someone, messageImage: nil),Message(speaker: "s1", content: "笑一個吧 功成名就不是目的讓自己快樂快樂這才叫做意義//////////", chatType: .mine, messageImage: nil), Message(speaker: "s1", content: nil, chatType: .mine, messageImage: "s1"),Message(speaker: "s1", content: nil, chatType: .mine, messageImage: "s15"),Message(speaker: "s1", content: "笑一個吧 功成名就不是目的讓自己快樂快樂這才叫做意義//////////", chatType: .mine, messageImage: nil), Message(speaker: "s2", content: nil, chatType: .someone, messageImage: "s15")]
     
     @IBOutlet weak var chatTableView: UITableView!
     
@@ -20,11 +20,10 @@ class ChatViewController: UIViewController {
         chatTableView.separatorStyle = .none
         chatTableView.delegate = self
         chatTableView.dataSource = self
+        //cell自適應
         chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
-        
-//        chatTableView.rowHeight = UITableViewRowAction
         chatTableView.rowHeight = UITableViewAutomaticDimension
-        // Do any additional setup after loading the view, typically from a nib.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,14 +37,23 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if messages[indexPath.row].chatType == .mine{
+        if messages[indexPath.row].chatType == .mine && messages[indexPath.row].messageImage == nil{
             let sendCell = tableView.dequeueReusableCell(withIdentifier: "SendMessageCell", for: indexPath) as! SendMessageTableViewCell
             sendCell.updateUI(sendMessage: messages[indexPath.row])
+            sendCell.makeCircleAvatar()
             return sendCell
+        }else if messages[indexPath.row].chatType == .mine && messages[indexPath.row].messageImage != nil {
+            let sendImageCell = tableView.dequeueReusableCell(withIdentifier: "SendImageCell", for: indexPath) as! SendImageMessageTableViewCell
+            sendImageCell.updateUI(imageMessage: messages[indexPath.row])
+            return sendImageCell
+        }else if messages[indexPath.row].chatType == .someone && messages[indexPath.row].messageImage != nil{
+            let receiveImageCell = tableView.dequeueReusableCell(withIdentifier: "RecieveImageCell", for: indexPath) as! RecieveImageMessageTableViewCell
+            receiveImageCell.updateUI(receiveImageMessage: messages[indexPath.row])
+            return receiveImageCell
         }else{
             let recieveCell = tableView.dequeueReusableCell(withIdentifier: "RecieveMessageCell", for: indexPath) as! RecieveMessageTableViewCell
             recieveCell.updateUI(recieveMessage: messages[indexPath.row])
-            recieveCell.updateUI(recieveMessage: messages[indexPath.row])
+            recieveCell.makeCircleAvatar()
             return recieveCell
         }
     }

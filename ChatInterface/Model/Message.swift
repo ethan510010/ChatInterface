@@ -15,6 +15,7 @@ enum ChatType{
 
 struct Message {
     var speaker:String
-    var content:String
+    var content:String?
     var chatType:ChatType
+    var messageImage:String?
 }

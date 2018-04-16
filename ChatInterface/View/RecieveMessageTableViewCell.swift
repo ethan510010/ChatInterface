@@ -10,19 +10,31 @@ import UIKit
 
 class RecieveMessageTableViewCell: UITableViewCell {
     
+    
+    
+    
     @IBOutlet weak var mateAvatar: UIImageView!
     @IBOutlet weak var recieveMessageContent: UILabel!
+    @IBOutlet weak var labelOutsideView: UIView!
+    
     
     func updateUI(recieveMessage:Message){
         self.recieveMessageContent.text = recieveMessage.content
+        self.mateAvatar.image = UIImage(named: recieveMessage.speaker)
+    }
+    
+    func makeCircleAvatar(){
+        self.mateAvatar.layer.masksToBounds = true
+        self.mateAvatar.layer.cornerRadius = self.mateAvatar.frame.width / 2
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.recieveMessageContent.backgroundColor = .groupTableViewBackground
         self.recieveMessageContent.textColor = .black
-        self.recieveMessageContent.layer.masksToBounds = true
-        self.recieveMessageContent.layer.cornerRadius = 10
+        self.labelOutsideView.layer.masksToBounds = true
+        self.labelOutsideView.layer.cornerRadius = 5
+        self.labelOutsideView.backgroundColor = .groupTableViewBackground
         self.selectionStyle = .none
         // Initialization code
     }
