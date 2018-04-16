@@ -18,8 +18,7 @@ class RecieveImageMessageTableViewCell: UITableViewCell {
         self.mateAvatarImageView.image = UIImage(named: receiveImageMessage.speaker)
         self.mateAvatarImageView.layer.masksToBounds = true
         self.mateAvatarImageView.layer.cornerRadius = self.mateAvatarImageView.frame.width / 2
-        
-        
+
         
         let mateMessageImage = UIImage(named: receiveImageMessage.messageImage!)
         let size = CGSize(width: 160, height: (mateMessageImage?.size.height)! * 160 / (mateMessageImage?.size.width)!)
