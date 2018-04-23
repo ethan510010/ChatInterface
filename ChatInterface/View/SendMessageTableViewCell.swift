@@ -17,9 +17,10 @@ class SendMessageTableViewCell: UITableViewCell {
     
     
     func updateUI(sendMessage:Message){
-        self.sendMessageContent.text = sendMessage.content
+        self.sendMessageContent.text = sendMessage.text
+//        self.sendMessageContent.text = sendMessage.content
         
-        self.myAvatar.image = UIImage(named: sendMessage.speaker)
+//        self.myAvatar.image = UIImage(named: sendMessage.speaker)
     }
     
     func makeCircleAvatar(){

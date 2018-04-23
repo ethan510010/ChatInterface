@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6124EC0208588C40094A6FD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6124EBF208588C40094A6FD /* ChatRoom.swift */; };
 		D62FC7ED208249180086D5AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62FC7EC208249180086D5AF /* AppDelegate.swift */; };
 		D62FC7EF208249180086D5AF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62FC7EE208249180086D5AF /* ChatViewController.swift */; };
 		D62FC7F2208249180086D5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62FC7F0208249180086D5AF /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		D67A016F2084A3C900DFA352 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A016E2084A3C900DFA352 /* FriendViewController.swift */; };
 		D67A01712084BD8100DFA352 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A01702084BD8100DFA352 /* RegisterViewController.swift */; };
 		D67A01732084C3EC00DFA352 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D67A01722084C3EC00DFA352 /* GoogleService-Info.plist */; };
+		D6B46D37208DA5BE00367380 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B46D36208DA5BE00367380 /* User.swift */; };
 		FFA328E5A968B1616CB1C599 /* Pods_ChatInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F0FC7DAC543558B6899E3 /* Pods_ChatInterface.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,7 @@
 		1CB8ADB6230F280F9FF57B3B /* Pods-ChatInterface.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatInterface.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatInterface/Pods-ChatInterface.release.xcconfig"; sourceTree = "<group>"; };
 		3D865A0C96EDE73152D9F532 /* Pods-ChatInterface.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatInterface.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatInterface/Pods-ChatInterface.debug.xcconfig"; sourceTree = "<group>"; };
 		554F0FC7DAC543558B6899E3 /* Pods_ChatInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6124EBF208588C40094A6FD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		D62FC7E9208249180086D5AF /* ChatInterface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatInterface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62FC7EC208249180086D5AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D62FC7EE208249180086D5AF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 		D67A016E2084A3C900DFA352 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		D67A01702084BD8100DFA352 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D67A01722084C3EC00DFA352 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6B46D36208DA5BE00367380 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +114,9 @@
 		D62FC7FE20824C3B0086D5AF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D62FC7EE208249180086D5AF /* ChatViewController.swift */,
 				D67A01702084BD8100DFA352 /* RegisterViewController.swift */,
 				D67A016E2084A3C900DFA352 /* FriendViewController.swift */,
+				D62FC7EE208249180086D5AF /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -131,6 +135,8 @@
 		D62FC80620824F380086D5AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D6124EBF208588C40094A6FD /* ChatRoom.swift */,
+				D6B46D36208DA5BE00367380 /* User.swift */,
 				D62FC80420824F2E0086D5AF /* Message.swift */,
 			);
 			path = Model;
@@ -263,7 +269,9 @@
 				D67A016F2084A3C900DFA352 /* FriendViewController.swift in Sources */,
 				D67A016B20846B3A00DFA352 /* SendImageMessageTableViewCell.swift in Sources */,
 				D62FC7ED208249180086D5AF /* AppDelegate.swift in Sources */,
+				D6124EC0208588C40094A6FD /* ChatRoom.swift in Sources */,
 				D62FC80020824C550086D5AF /* SendMessageTableViewCell.swift in Sources */,
+				D6B46D37208DA5BE00367380 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +419,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47R4BK8PQH;
 				INFOPLIST_FILE = ChatInterface/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethan510010.ChatInterface;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -427,7 +438,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47R4BK8PQH;
 				INFOPLIST_FILE = ChatInterface/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethan510010.ChatInterface;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

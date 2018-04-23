@@ -19,8 +19,8 @@ class RecieveMessageTableViewCell: UITableViewCell {
     
     
     func updateUI(recieveMessage:Message){
-        self.recieveMessageContent.text = recieveMessage.content
-        self.mateAvatar.image = UIImage(named: recieveMessage.speaker)
+        self.recieveMessageContent.text = recieveMessage.text
+//        self.mateAvatar.image = UIImage(named: recieveMessage.speaker)
     }
     
     func makeCircleAvatar(){

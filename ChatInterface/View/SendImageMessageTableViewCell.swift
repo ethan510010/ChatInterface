@@ -16,16 +16,16 @@ class SendImageMessageTableViewCell: UITableViewCell {
     
     
     func updateUI(imageMessage:Message){
-        self.myAvatar.image = UIImage(named: imageMessage.speaker)
-        let myMessageImage = UIImage(named: imageMessage.messageImage!)
+//        self.myAvatar.image = UIImage(named: imageMessage.speaker)
+//        let myMessageImage = UIImage(named: imageMessage.messageImage!)
         self.myAvatar.layer.masksToBounds = true
         self.myAvatar.layer.cornerRadius = self.myAvatar.frame.width / 2
 
         
         
-        let size = CGSize(width: 160, height: (myMessageImage?.size.height)! * 160 / (myMessageImage?.size.width)!)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        myMessageImage?.draw(in: CGRect(origin: CGPoint.zero, size: size))
+//        let size = CGSize(width: 160, height: (myMessageImage?.size.height)! * 160 / (myMessageImage?.size.width)!)
+//        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+//        myMessageImage?.draw(in: CGRect(origin: CGPoint.zero, size: size))
         let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         guard let modifiedImage = UIImageJPEGRepresentation(resizeImage!, 0.8) else {return}

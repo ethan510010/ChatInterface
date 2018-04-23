@@ -83,6 +83,9 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.text = "ethan510010@hotmail.com"
+        passwordTextField.text = "Ethan31890909"
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
