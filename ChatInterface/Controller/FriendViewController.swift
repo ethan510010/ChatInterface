@@ -112,16 +112,13 @@ extension FriendViewController: UITableViewDelegate, UITableViewDataSource{
             let allRoomsRef = rootReference.child("chatRooms")
             //再去刪除該對應的key
             allRoomsRef.child(key).removeValue()
-            //刪除本地端資料
+            //刪除本地端資料，其實這邊可以不用刪除，因為我們是監聽value的變化，我們有在viewDidLoad加上與chatRooms的處理，那邊動本地端就會動，所以這邊不需要處理
             self.chatRooms.remove(at: indexPath.row)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.roomName = chatRooms[indexPath.row].chatRoomName
-//        self.roomID = chatRooms[indexPath.row].autoID
         performSegue(withIdentifier: "goToChatRoom", sender: chatRooms[indexPath.row])
-//        print(roomID)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

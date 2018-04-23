@@ -22,6 +22,7 @@
 		D67A01712084BD8100DFA352 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A01702084BD8100DFA352 /* RegisterViewController.swift */; };
 		D67A01732084C3EC00DFA352 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D67A01722084C3EC00DFA352 /* GoogleService-Info.plist */; };
 		D6B46D37208DA5BE00367380 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B46D36208DA5BE00367380 /* User.swift */; };
+		D6DA54A6208E1FB000332A99 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DA54A5208E1FB000332A99 /* UIImageExtension.swift */; };
 		FFA328E5A968B1616CB1C599 /* Pods_ChatInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F0FC7DAC543558B6899E3 /* Pods_ChatInterface.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		D67A01702084BD8100DFA352 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D67A01722084C3EC00DFA352 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6B46D36208DA5BE00367380 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6DA54A5208E1FB000332A99 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D62FC80620824F380086D5AF /* Model */,
 				D62FC7FE20824C3B0086D5AF /* Controller */,
 				D62FC7F0208249180086D5AF /* Main.storyboard */,
+				D6DA54A7208E1FB500332A99 /* Extension */,
 				D62FC80120824C590086D5AF /* View */,
 				D62FC7F3208249190086D5AF /* Assets.xcassets */,
 				D62FC7F5208249190086D5AF /* LaunchScreen.storyboard */,
@@ -140,6 +143,14 @@
 				D62FC80420824F2E0086D5AF /* Message.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D6DA54A7208E1FB500332A99 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D6DA54A5208E1FB000332A99 /* UIImageExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 				D6124EC0208588C40094A6FD /* ChatRoom.swift in Sources */,
 				D62FC80020824C550086D5AF /* SendMessageTableViewCell.swift in Sources */,
 				D6B46D37208DA5BE00367380 /* User.swift in Sources */,
+				D6DA54A6208E1FB000332A99 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

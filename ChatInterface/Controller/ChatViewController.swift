@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //拍完照片或選相片後執行的事
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let size = CGSize(width: 320, height: image.size.height * 320 / image.size.width)
@@ -220,6 +221,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
             guard let selectedChatRoomID = selectedChatRoom?.autoID else {return}
             let messageRoomKey = allMessagesRef.child(selectedChatRoomID)
             //去找到要刪除的message的key，但必須是那個人才可以刪除自己的訊息不能刪別人的
+            //以下做法現在是不好的，因為這樣如果有人改我的code就可以改變，正確做法應該是在firebase去規則那邊控制，前端這邊應該只能去做如果不是我發的我不能滑開那個tableView的cell選刪除
             let messageKey = messageRoomKey.child(messages[indexPath.row].autoID)
             print(messageKey)
             
@@ -228,7 +230,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
                 if let correctUserUID = snapshot.childSnapshot(forPath: "uid").value as? String, correctUserUID == Auth.auth().currentUser?.uid{
                     messageKey.removeValue()
                     //刪除本地端資料
-                    self.messages.remove(at: indexPath.row)
+//                    self.messages.remove(at: indexPath.row)
                 }
             })
 
