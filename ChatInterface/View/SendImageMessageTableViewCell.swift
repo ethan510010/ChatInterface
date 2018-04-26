@@ -16,33 +16,43 @@ class SendImageMessageTableViewCell: UITableViewCell {
     
     
     func updateUI(imageMessage:Message){
-//        self.myAvatar.image = UIImage(named: imageMessage.speaker)
-//        let myMessageImage = UIImage(named: imageMessage.messageImage!)
+        //        self.myAvatar.image = UIImage(named: imageMessage.speaker)
+        
+        //        let myMessageImage = UIImage(named: imageMessage.messageImage!)
+        
         self.myAvatar.layer.masksToBounds = true
         self.myAvatar.layer.cornerRadius = self.myAvatar.frame.width / 2
+        guard let imageURL = URL(string: imageMessage.imageURL) else { return }
+        let task = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+                return
+            }
+            guard let imageData = data, let downloadedImage = UIImage(data: imageData) else {return}
+            print("送出圖片資料:\(imageData)")
+            let adjustedImage = downloadedImage.scale(newWidth: 160)
+            
+            DispatchQueue.main.async {
+                self.messageImage.image = adjustedImage
+            }
+        }
+        task.resume()
 
-        
-        
-//        let size = CGSize(width: 160, height: (myMessageImage?.size.height)! * 160 / (myMessageImage?.size.width)!)
-//        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-//        myMessageImage?.draw(in: CGRect(origin: CGPoint.zero, size: size))
-        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        guard let modifiedImage = UIImageJPEGRepresentation(resizeImage!, 0.8) else {return}
-        self.messageImage.image = UIImage(data: modifiedImage)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        messageImage.contentMode = .scaleAspectFill
         self.chatBubbleView.backgroundColor = UIColor(red: 70/255, green: 137/255, blue: 245/255, alpha: 1)
         self.chatBubbleView.layer.masksToBounds = true
         self.chatBubbleView.layer.cornerRadius = 5
+        self.selectionStyle = .none
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

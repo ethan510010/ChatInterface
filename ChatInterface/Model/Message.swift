@@ -26,6 +26,8 @@ struct Message {
     var timeStamp:Double
     var autoID:String
     
+//    var imageData:Data?
+    
 }//struct Message {
 //    var speaker:String
 //    var content:String?
