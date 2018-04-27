@@ -11,17 +11,22 @@ import Firebase
 
 class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var getMore = true
+
     var currentTimeStamp:Double?
     var currentKey:String?
     
     
+    //舊的訊息
+    var oldMessages:[Message] = [Message]()
+    //Users/ethanlin/Desktop/IOS學習/重要/ChatInterface/ChatInterface.xcodeproj
     //本地端接受Firebase的message的
     var messages:[Message] = []{
         didSet{
-            DispatchQueue.main.async {
-                self.chatTableView.reloadData()
-
-            }
+//            DispatchQueue.main.async {
+//                self.chatTableView.reloadData()
+//
+//            }
         }
     }
     //tableView自動滾動到最後一行
@@ -90,6 +95,7 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.dismiss(animated: true, completion: nil)
     }
     
+    //送出訊息（寫入到Firebase）
     @IBAction func sendMessage(_ sender: UIButton) {
         //創建訊息群的Ref
         let messagesRef = rootReference.child("Messages")
@@ -131,55 +137,121 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
+    //從firebase上載入訊息
     func getMessage(){
-        guard let selectedChatRoom = selectedChatRoom else { return }
-        
-        //把firebase的資料載下來，但要限制是只有該room的id有對應到選擇的id
-        let messagesRef = rootReference.child("Messages")
-        //要到選擇的聊天室的節點
-        let chooseMessageRoomRef = messagesRef.child(selectedChatRoom.autoID)
-        print("到選擇的聊天室節點:\(chooseMessageRoomRef)")
-        //過濾及顯示特定筆數的設定
-        //1. 過濾條件
-        let request = chooseMessageRoomRef.queryOrdered(byChild: "timeStamp")
-        //2. 顯示最新的十筆
-        request.queryLimited(toLast: 15).observe(.value) { (snapshot) in
-            self.messages = []
-            for eachMessage in snapshot.children.allObjects as! [DataSnapshot]{
-                guard let snapshotValue = eachMessage.value as? Dictionary<String,Any> else {return}
-                print(snapshotValue)
-                guard let contentText = snapshotValue["text"] as? String, let sendImageURL = snapshotValue["imageURL"] as? String, let timeStamp = snapshotValue["timeStamp"] as? Double, let userID = snapshotValue["uid"] as? String else {return}
-                let eachMessage = Message(text: contentText, imageURL: sendImageURL, uid: userID, timeStamp: timeStamp, autoID: eachMessage.key)
-                //載入到本地端
-                self.messages.append(eachMessage)
-                
+        if currentKey == nil{
+            print("getMessag ", self.currentTimeStamp)
+
+            guard let selectedChatRoom = selectedChatRoom else { return }
+            //把firebase的資料載下來，但要限制是只有該room的id有對應到選擇的id
+            let messagesRef = rootReference.child("Messages")
+            //要到選擇的聊天室的節點
+            let chooseMessageRoomRef = messagesRef.child(selectedChatRoom.autoID)
+            print("到選擇的聊天室節點:\(chooseMessageRoomRef)")
+            //過濾及顯示特定筆數的設定
+            //1. 過濾條件
+            let request = chooseMessageRoomRef.queryOrdered(byChild: "timeStamp")
+            //2. 顯示最新的十筆
+            request.queryLimited(toLast: 20).observe(.value) { (snapshot) in
+                print("request.queryLimited")
+                if snapshot.childrenCount > 0{
+                    
+                    if snapshot.childrenCount == 1 {
+                        self.getMore = false
+                    }
+                    
+                    let first = snapshot.children.allObjects.first as! DataSnapshot
+                    print("此key\(first.key)")
+                    self.messages = []
+                    for eachMessage in snapshot.children.allObjects as! [DataSnapshot]{
+                        guard let snapshotValue = eachMessage.value as? Dictionary<String,Any> else {return}
+                        print(snapshotValue)
+                        guard let contentText = snapshotValue["text"] as? String, let sendImageURL = snapshotValue["imageURL"] as? String, let timeStamp = snapshotValue["timeStamp"] as? Double, let userID = snapshotValue["uid"] as? String else {return}
+                        let eachMessage = Message(text: contentText, imageURL: sendImageURL, uid: userID, timeStamp: timeStamp, autoID: eachMessage.key)
+                        //加到本地端
+                        self.messages.append(eachMessage)
+                    }
+                    self.currentKey = first.key
+                    self.currentTimeStamp = first.childSnapshot(forPath: "timeStamp").value as! Double
+                    self.chatTableView.reloadData()
+                    self.chatTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+                } else {
+                    self.getMore = false
+                    
+                }
             }
+        }else {
+            print("getMessag ", self.currentTimeStamp)
+
+            guard let selectedChatRoom = selectedChatRoom else { return }
+            //把firebase的資料載下來，但要限制是只有該room的id有對應到選擇的id
+            let messagesRef = rootReference.child("Messages")
+            //要到選擇的聊天室的節點
+            let chooseMessageRoomRef = messagesRef.child(selectedChatRoom.autoID)
+            print("到選擇的聊天室節點:\(chooseMessageRoomRef)")
+            //過濾及顯示特定筆數的設定
+            //1. 過濾條件
+            let request = chooseMessageRoomRef.queryOrdered(byChild: "timeStamp")
+        
+            
+            request.queryEnding(atValue: self.currentTimeStamp).queryLimited(toLast: 20).observe(.value) { (snapshot) in
+                print("request.queryEnding")
+                if snapshot.childrenCount > 1 {
+                    
+                    print("new messags count", snapshot.childrenCount)
+                    
+                    let first = snapshot.children.allObjects.first as! DataSnapshot
+                    let number = snapshot.childrenCount - 2
+
+                    guard let array = snapshot.children.allObjects as? [DataSnapshot] else {
+                        return
+                    }
+                    
+                    let last =  array[Int(number)]
+                    
+                    guard let snapshotValue = last.value as? Dictionary<String,Any> ,  let lastTimeStamp = snapshotValue["timeStamp"] as? Double, lastTimeStamp < self.currentTimeStamp! else {
+                        return
+                        
+                    }
+                  
+                   
+                    
+                    for eachMessage in snapshot.children.allObjects as! [DataSnapshot]{
+                        guard let snapshotValue = eachMessage.value as? Dictionary<String,Any> else {return}
+                        print(snapshotValue)
+                        guard let contentText = snapshotValue["text"] as? String, let sendImageURL = snapshotValue["imageURL"] as? String, let timeStamp = snapshotValue["timeStamp"] as? Double, let userID = snapshotValue["uid"] as? String else {return}
+                        let eachMessage = Message(text: contentText, imageURL: sendImageURL, uid: userID, timeStamp: timeStamp, autoID: eachMessage.key)
+                        //加到本地端
+                        self.oldMessages.append(eachMessage)
+//                        self.messages.insert(eachMessage, at: 0)
+//                        self.messages.append(eachMessage)
+                    }
+                    self.messages.insert(contentsOf: self.oldMessages, at: 0)
+                    self.currentKey = first.key
+                    self.currentTimeStamp = first.childSnapshot(forPath: "timeStamp").value as! Double
+                    self.chatTableView.reloadData()
+                } else {
+                    self.getMore = false
+                    
+                }
+            }
+            
+
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getMessage()
-        //3. 之後只要再抓新增的訊息就好
-//        request.observe(.childAdded) { (snapshot) in
-//            guard let snapshotValue = snapshot.value as? Dictionary<String,Any> else { return }
-//            guard let context = snapshotValue["text"] as? String, let sendImageURL = snapshotValue["imageURL"] as? String, let timeStamp = snapshotValue["timeStamp"] as? Double, let userID = snapshotValue["uid"] as? String else {return}
-//            let newMessage = Message(text: context, imageURL: sendImageURL, uid: userID, timeStamp: timeStamp, autoID: snapshot.key)
-//            //新增到本地端
-//            self.messages.append(newMessage)
-//
-//            DispatchQueue.main.async {
-//                self.chatTableView.reloadData()
-//                self.scrollToBottom()
-//            }
-//        }
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         //cell自適應
-        chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
         chatTableView.rowHeight = UITableViewAutomaticDimension
+        chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
+        
     }
     
     //鍵盤出現的事件
@@ -228,6 +300,17 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
         return messages.count
     }
     
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        print(indexPath.row)
+        
+        if indexPath.row == 0 && getMore {
+            getMessage()
+            
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.messages[indexPath.row].uid == Auth.auth().currentUser?.uid && messages[indexPath.row].imageURL == ""{
             let sendCell = tableView.dequeueReusableCell(withIdentifier: "SendMessageCell", for: indexPath) as! SendMessageTableViewCell
@@ -250,11 +333,23 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
-    //要實現無線滾動
+    //實現無線滾動
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if
+//        if indexPath.row == self.messages.count - 10{
+//            self.getMessage()
+//        }
 //    }
+//
+    /*
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let currentOffset = scrollView.contentOffset.y
+        let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
 
+        if maxOffset - currentOffset <= 100{
+            getMessage()
+        }
+    }
+    */
     //刪除訊息的功能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{

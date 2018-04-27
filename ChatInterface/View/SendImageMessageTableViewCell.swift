@@ -34,6 +34,7 @@ class SendImageMessageTableViewCell: UITableViewCell {
             
             DispatchQueue.main.async {
                 self.messageImage.image = adjustedImage
+                
             }
         }
         task.resume()
