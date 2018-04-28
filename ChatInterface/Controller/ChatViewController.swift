@@ -129,8 +129,8 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         chatTableView.delegate = self
         chatTableView.dataSource = self
 //        //cell自適應
-        chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
-        chatTableView.rowHeight = UITableViewAutomaticDimension
+//        chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
+//        chatTableView.rowHeight = UITableViewAutomaticDimension
         //監聽鍵盤事件
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -249,8 +249,10 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         //cell自適應
-        chatTableView.rowHeight = UITableViewAutomaticDimension
+//        chatTableView.estimatedRowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = self.view.frame.height * (100/667)
+        chatTableView.rowHeight = UITableViewAutomaticDimension
+        
         
     }
     
@@ -322,16 +324,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
             return recieveCell
         }else if self.messages[indexPath.row].uid == Auth.auth().currentUser?.uid && messages[indexPath.row].imageURL != ""{
             let sendImageCell = tableView.dequeueReusableCell(withIdentifier: "SendImageCell", for: indexPath) as! SendImageMessageTableViewCell
-            sendImageCell.updateUI(imageMessage: self.messages[indexPath.row])
+            sendImageCell.updateUI(imageMessage: self.messages[indexPath.row], tableView: tableView)
             return sendImageCell
         }else if self.messages[indexPath.row].uid != Auth.auth().currentUser?.uid && messages[indexPath.row].imageURL != ""{
              let receiveImageCell = tableView.dequeueReusableCell(withIdentifier: "RecieveImageCell", for: indexPath) as! RecieveImageMessageTableViewCell
-            receiveImageCell.updateUI(receiveImageMessage: messages[indexPath.row])
+            receiveImageCell.updateUI(receiveImageMessage: messages[indexPath.row], tableView: tableView)
             return receiveImageCell
         }else{
             return UITableViewCell()
         }
     }
+    
+   
     
     //實現無線滾動
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

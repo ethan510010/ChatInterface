@@ -14,7 +14,7 @@ class RecieveImageMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var labelOutsideView: UIView!
     @IBOutlet weak var messageImage: UIImageView!
     
-    func updateUI(receiveImageMessage:Message){
+    func updateUI(receiveImageMessage:Message,tableView:UITableView){
         self.mateAvatarImageView.layer.masksToBounds = true
         self.mateAvatarImageView.layer.cornerRadius = self.mateAvatarImageView.frame.width / 2
         guard let imageURL = URL(string: receiveImageMessage.imageURL) else { return }
@@ -29,6 +29,11 @@ class RecieveImageMessageTableViewCell: UITableViewCell {
             let adjustedImage = downloadedImage.scale(newWidth: 160)
             DispatchQueue.main.async {
                 self.messageImage.image = adjustedImage
+                UIView.performWithoutAnimation {
+                    tableView.beginUpdates()
+                    tableView.layoutIfNeeded()
+                    tableView.endUpdates()
+                }
             }
         }
         task.resume()
