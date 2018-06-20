@@ -93,12 +93,13 @@ extension FriendViewController: UITableViewDelegate, UITableViewDataSource{
         let friendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
         friendCell.selectionStyle = .none
         friendCell.textLabel?.text = chatRooms[indexPath.row].chatRoomName
+        friendCell.textLabel?.textColor = UIColor.white
         return friendCell
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-        footerView.backgroundColor = .groupTableViewBackground
+        footerView.backgroundColor = UIColor.clear
         return footerView
     }
     

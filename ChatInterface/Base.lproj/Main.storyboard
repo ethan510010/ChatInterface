@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WDv-Xr-Od9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WDv-Xr-Od9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -356,9 +356,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bernardo-santos-595477-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="uL3-0f-hOU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qQE-Uc-dXa">
-                                <rect key="frame" x="0.0" y="135.5" width="375" height="531.5"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="135" width="375" height="532"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="dFJ-T7-x88">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -366,7 +370,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dFJ-T7-x88" id="zwc-2H-Jge">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -390,7 +396,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27353608610000002" green="0.5374699235" blue="0.96083360910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GH3-Gm-gNF" firstAttribute="width" secondItem="Q1t-KA-JY6" secondAttribute="width" multiplier="250:375" id="8l9-TI-qDS"/>
                                     <constraint firstItem="nxt-9C-7FQ" firstAttribute="width" secondItem="Q1t-KA-JY6" secondAttribute="width" multiplier="115:375" id="C27-Rf-rEO"/>
@@ -403,7 +409,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.27353608610000002" green="0.5374699235" blue="0.96083360910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qQE-Uc-dXa" secondAttribute="bottom" id="CWc-7L-dYS"/>
                             <constraint firstItem="qQE-Uc-dXa" firstAttribute="top" secondItem="Q1t-KA-JY6" secondAttribute="bottom" id="DD3-yb-vIz"/>
@@ -427,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaP-Ah-wNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.1159420289857" y="-18.75"/>
+            <point key="canvasLocation" x="1967.2" y="-19.340329835082461"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TEj-f6-yCA">
@@ -461,6 +466,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bernardo-santos-595477-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="qdi-be-HdO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Mc-Uk-poA">
                                 <rect key="frame" x="115" y="568" width="144" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -525,11 +533,15 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27353608610000002" green="0.5374699235" blue="0.96083360910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="qdi-be-HdO" firstAttribute="leading" secondItem="Myl-4v-Djq" secondAttribute="leading" id="6p7-LV-GNx"/>
+                            <constraint firstItem="qdi-be-HdO" firstAttribute="top" secondItem="Myl-4v-Djq" secondAttribute="top" id="EYw-rA-BSb"/>
                             <constraint firstItem="rlF-3q-Uek" firstAttribute="centerX" secondItem="x13-6h-ZU4" secondAttribute="centerX" id="LdE-oj-gIG"/>
                             <constraint firstItem="rlF-3q-Uek" firstAttribute="height" secondItem="x13-6h-ZU4" secondAttribute="height" multiplier="57:667" id="O8k-TO-JLc"/>
+                            <constraint firstItem="qdi-be-HdO" firstAttribute="bottom" secondItem="Myl-4v-Djq" secondAttribute="bottom" id="boc-DG-Ym6"/>
                             <constraint firstItem="rlF-3q-Uek" firstAttribute="centerY" secondItem="x13-6h-ZU4" secondAttribute="centerY" id="eH7-Dh-dcQ"/>
+                            <constraint firstItem="qdi-be-HdO" firstAttribute="trailing" secondItem="Myl-4v-Djq" secondAttribute="trailing" id="yHo-Sc-vSb"/>
                             <constraint firstItem="rlF-3q-Uek" firstAttribute="width" secondItem="x13-6h-ZU4" secondAttribute="width" multiplier="319:375" id="zxy-IO-r0I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Myl-4v-Djq"/>
@@ -547,4 +559,7 @@
             <point key="canvasLocation" x="1132" y="-18.440779610194905"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bernardo-santos-595477-unsplash" width="4173" height="2786"/>
+    </resources>
 </document>

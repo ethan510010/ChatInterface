@@ -16,6 +16,7 @@
 		D62FC80020824C550086D5AF /* SendMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62FC7FF20824C550086D5AF /* SendMessageTableViewCell.swift */; };
 		D62FC80320824C740086D5AF /* RecieveMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62FC80220824C740086D5AF /* RecieveMessageTableViewCell.swift */; };
 		D62FC80520824F2E0086D5AF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62FC80420824F2E0086D5AF /* Message.swift */; };
+		D642D8AE2094B9A600F08969 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642D8AD2094B9A600F08969 /* APIManager.swift */; };
 		D67A016B20846B3A00DFA352 /* SendImageMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A016A20846B3A00DFA352 /* SendImageMessageTableViewCell.swift */; };
 		D67A016D20846B4E00DFA352 /* RecieveImageMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A016C20846B4E00DFA352 /* RecieveImageMessageTableViewCell.swift */; };
 		D67A016F2084A3C900DFA352 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A016E2084A3C900DFA352 /* FriendViewController.swift */; };
@@ -41,6 +42,7 @@
 		D62FC7FF20824C550086D5AF /* SendMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D62FC80220824C740086D5AF /* RecieveMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D62FC80420824F2E0086D5AF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D642D8AD2094B9A600F08969 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D67A016A20846B3A00DFA352 /* SendImageMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D67A016C20846B4E00DFA352 /* RecieveImageMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveImageMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D67A016E2084A3C900DFA352 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D67A01702084BD8100DFA352 /* RegisterViewController.swift */,
+				D642D8AD2094B9A600F08969 /* APIManager.swift */,
 				D67A016E2084A3C900DFA352 /* FriendViewController.swift */,
 				D62FC7EE208249180086D5AF /* ChatViewController.swift */,
 			);
@@ -282,6 +285,7 @@
 				D62FC7ED208249180086D5AF /* AppDelegate.swift in Sources */,
 				D6124EC0208588C40094A6FD /* ChatRoom.swift in Sources */,
 				D62FC80020824C550086D5AF /* SendMessageTableViewCell.swift in Sources */,
+				D642D8AE2094B9A600F08969 /* APIManager.swift in Sources */,
 				D6B46D37208DA5BE00367380 /* User.swift in Sources */,
 				D6DA54A6208E1FB000332A99 /* UIImageExtension.swift in Sources */,
 			);
@@ -429,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 47R4BK8PQH;
+				DEVELOPMENT_TEAM = B2H8R699XY;
 				INFOPLIST_FILE = ChatInterface/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -448,7 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 47R4BK8PQH;
+				DEVELOPMENT_TEAM = B2H8R699XY;
 				INFOPLIST_FILE = ChatInterface/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

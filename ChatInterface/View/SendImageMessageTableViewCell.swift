@@ -21,27 +21,39 @@ class SendImageMessageTableViewCell: UITableViewCell {
         
         self.myAvatar.layer.masksToBounds = true
         self.myAvatar.layer.cornerRadius = self.myAvatar.frame.width / 2
-        guard let imageURL = URL(string: imageMessage.imageURL) else { return }
-        let task = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-            if error != nil{
-                print(error?.localizedDescription)
-                return
-            }
-            guard let imageData = data, let downloadedImage = UIImage(data: imageData) else {return}
-            print("送出圖片資料:\(imageData)")
-            let adjustedImage = downloadedImage.scale(newWidth: 160)
-            
+        
+        APIManager.shared.downloadImageMessage(of: imageMessage.imageURL) { (messageImage) in
+            let adjustedImage = messageImage?.scale(newWidth: 160)
             DispatchQueue.main.async {
                 self.messageImage.image = adjustedImage
                 UIView.performWithoutAnimation {
                     tableView.beginUpdates()
-                    tableView.layoutIfNeeded()
+//                    tableView.layoutIfNeeded()
                     tableView.endUpdates()
                 }
-                //self.layoutIfNeeded()
             }
         }
-        task.resume()
+//        guard let imageURL = URL(string: imageMessage.imageURL) else { return }
+//        let task = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+//            if error != nil{
+//                print(error?.localizedDescription)
+//                return
+//            }
+//            guard let imageData = data, let downloadedImage = UIImage(data: imageData) else {return}
+//            print("送出圖片資料:\(imageData)")
+//            let adjustedImage = downloadedImage.scale(newWidth: 160)
+//
+//            DispatchQueue.main.async {
+//                self.messageImage.image = adjustedImage
+//                UIView.performWithoutAnimation {
+//                    tableView.beginUpdates()
+//                    tableView.layoutIfNeeded()
+//                    tableView.endUpdates()
+//                }
+//                //self.layoutIfNeeded()
+//            }
+//        }
+//        task.resume()
         
     }
     

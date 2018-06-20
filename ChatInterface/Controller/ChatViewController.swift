@@ -173,8 +173,9 @@ class ChatViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     }
                     self.currentKey = first.key
                     self.currentTimeStamp = first.childSnapshot(forPath: "timeStamp").value as! Double
-                    self.chatTableView.reloadData()
-                    self.chatTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+                        self.chatTableView.reloadData()
+                        self.chatTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+                    
                 } else {
                     self.getMore = false
                     
@@ -309,7 +310,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
         
         if indexPath.row == 0 && getMore {
             getMessage()
-            
         }
     }
     
@@ -324,6 +324,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
             return recieveCell
         }else if self.messages[indexPath.row].uid == Auth.auth().currentUser?.uid && messages[indexPath.row].imageURL != ""{
             let sendImageCell = tableView.dequeueReusableCell(withIdentifier: "SendImageCell", for: indexPath) as! SendImageMessageTableViewCell
+//            sendImageCell.messageImage.image = nil
+            sendImageCell.tag = indexPath.row
             sendImageCell.updateUI(imageMessage: self.messages[indexPath.row], tableView: tableView)
             return sendImageCell
         }else if self.messages[indexPath.row].uid != Auth.auth().currentUser?.uid && messages[indexPath.row].imageURL != ""{
